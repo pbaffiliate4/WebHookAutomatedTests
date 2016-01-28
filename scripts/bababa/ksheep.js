@@ -1,6 +1,6 @@
 /** Script ACLs do not delete 
  read=nobody 
 write=nobody
-execute=anonymous 
+execute=nobody 
   **/ 
- return "ba ba back sdddheep";			
+ return "vroom";			
