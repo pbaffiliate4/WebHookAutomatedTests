@@ -1,0 +1,7 @@
+/** Script ACLs do not delete 
+ read=nobody 
+write=nobody
+execute=authenticated 
+  **/ 
+ /*#*beginblockly*#*<xml xmlns="http://www.w3.org/1999/xhtml"><block type="scriptr_return" id="23" inline="false" x="51" y="86"><value name="return"><block type="scriptr_push_notification" id="69" inline="true"><mutation isproduction="false"></mutation><field name="deviceType">android</field><value name="message"><block type="text" id="84"><field name="TEXT">yam yam</field></block></value><value name="tokens"><block type="lists_create_with" id="101" inline="false"><mutation items="3"></mutation><value name="ADD0"><block type="text" id="116"><field name="TEXT">ewOt4rKcBqo:APA91bFjVPXfT39QRrQ0Jz83lSDqYopnmtCn615Ne08Th9eyVFAPTCMb2SxUWoQIzGPKjPTq0n3ugS6i3V1PwPTAQl344Bo89b-_S252wVn_Z6JxFtxnU2Gk6n-AWGTxdxMu3ZCcODEU</field></block></value><value name="ADD1"><block type="text" id="131"><field name="TEXT">e2lsZ8-JUNc:APA91bETYYqJ7WIqtsAyGR4kqROzlw6CKFJUsRrmj4dSjrs21T83bBwlZ_t2M9XEdhuTWmFKhdA2npx-zFAKMFrkHLyCK-Zb1oga_Ngn7VHJv6_Sg5od7quFGQUjJUvSodcjOubrNZns</field></block></value></block></value></block></value></block></xml>*#*#*/
+return push(['ewOt4rKcBqo:APA91bFjVPXfT39QRrQ0Jz83lSDqYopnmtCn615Ne08Th9eyVFAPTCMb2SxUWoQIzGPKjPTq0n3ugS6i3V1PwPTAQl344Bo89b-_S252wVn_Z6JxFtxnU2Gk6n-AWGTxdxMu3ZCcODEU', 'e2lsZ8-JUNc:APA91bETYYqJ7WIqtsAyGR4kqROzlw6CKFJUsRrmj4dSjrs21T83bBwlZ_t2M9XEdhuTWmFKhdA2npx-zFAKMFrkHLyCK-Zb1oga_Ngn7VHJv6_Sg5od7quFGQUjJUvSodcjOubrNZns', null], 'yam yam', "android", "null")			
