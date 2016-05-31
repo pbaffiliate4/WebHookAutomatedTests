@@ -1,8 +1,7 @@
 /** Script ACLs do not delete 
  read=nobody 
 write=nobody
-execute=authenticated 
+execute=anonymous 
   **/ 
  var voum = require("../shape");
-
 return voum.getShape();			
