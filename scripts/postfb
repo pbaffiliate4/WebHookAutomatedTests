@@ -1,0 +1,23 @@
+ var fb = require("facebook");
+//test
+var currentDate = new Date();
+var formattedDate = currentDate.getFullYear() + "-" + atLeastTwoDigits(currentDate.getMonth() + 1)
+  + "-" + atLeastTwoDigits(currentDate.getDate()) + "T" + atLeastTwoDigits(currentDate.getHours())
+  + ":" + atLeastTwoDigits(currentDate.getMinutes()) + ":" + atLeastTwoDigits(currentDate.getSeconds());
+formattedDate += currentDate.getTimezoneOffset() < 0 ? "+" : "-";
+formattedDate += atLeastTwoDigits((Math.abs(currentDate.getTimezoneOffset()) / 60)) + "00";
+
+var message = "Check out this image: http://www.google.com/intl/en_ALL/images/logo.gif";
+
+var credentials = {
+  "apiKey": "341726685895718",
+  "apiSecret": "62d55f6f76433f42c644ef2e9caf91bf",
+  "accessToken": "CAAE2zHG5HCYBAABjDQQZCfYyiMOpVa3c1j7InyOsr4CVkZCYCKj6jFInE068BpZCtNjfKbPagfBHll3dFUs4npkZCel7rrnZAzweZB3dMORYWAGslziZCDfuKp2e7BfYYfgY7zSpHOtGw5ETvSmTs4bgWR9bcIH2y154cGGfV996RQVKMCEipcRwGnbvPqYShOQYtxPsFGtVgZDZD"
+};
+
+return fb.post(message, credentials);
+
+
+function atLeastTwoDigits (value) {
+    return value < 10 ? "0" + value : value;
+}   				   				   				   				   				   							   				   				   				
