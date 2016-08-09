@@ -1,0 +1,12 @@
+ var fb = require("facebook");
+
+var callbackUrl = "http://www.scriptr.io/";
+
+var oauthVerifier = "AQAJRPPon9fUeqY7jl6lu-F8NyKWzPxU4Z_AyphaHVqsUsyiDWbF_3RXxGweXt1yinhWKzx-oaPTa2WN9b9M640T6HIYv8ZGYn5gA1VPdv4NFt_I5rzbq8ExOaZDD5TLJo6PorYf75d1O66ClIaD9edq75WRZ7UOiHfV-1O2br6NMEVrYZLh5SYsUllejA6EQTVlCNgDwWqZ5tPUHqJ1oMz84Vt9t1q2i8oUsGqBsw2AilBGbr_9uWWgbsVHafmGaM_Df2hMEo2k8B1D-lPqQNo4F6AnxJU-KG9NcMfGBXCd335EtksiPlI9qSbuLqm5hGrYQTKVBzBqW-VQ1ipWRgdd";
+
+var credentials = {
+  "apiKey": "341726685895718",
+  "apiSecret": "62d55f6f76433f42c644ef2e9caf91bf"
+};
+
+return fb.getAccessToken(callbackUrl, oauthVerifier, credentials);   				   				   				   							   				
