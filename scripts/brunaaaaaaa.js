@@ -3,4 +3,4 @@
 write=nobody
 execute=anonymous 
   **/ 
- return 2;			
+ return 6;			
