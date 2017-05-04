@@ -1,0 +1,2 @@
+var pub = require("pubsub");
+return pub.publish("frr", "my message here.");
