@@ -1,0 +1,109 @@
+
+
+		var i = 0;
+		var listStores = apsdb.callApi("ListStores");
+		for (i = 0; i < listStores.result.stores.length; i++) {
+		    if (listStores.result.stores[i].name != "LoadTestStore") {
+		        var deleteStore = apsdb.callApi("DeleteStore", {
+		            "apsdb.store": listStores.result.stores[i].name
+		        }, null);
+		    }
+		}
+		var listGroups = apsdb.callApi("ListGroups");
+		for (i = 0; i < listGroups.result.groups.length; i++) {
+		    var deleteGroup = apsdb.callApi("DeleteGroup", {
+		        "groupName": listGroups.result.groups[i].name
+		    }, null);
+		}
+		var listUsers = apsdb.callApi("ListUsers");
+		for (i = 0; i < listUsers.result.users.length; i++) {
+		    var deleteUser = apsdb.callApi("DeleteUser", {
+		        "login": listUsers.result.users[i].id
+		    }, null);
+		}
+		var listDevices = apsdb.callApi("ListDevices");
+		for (i = 0; i < listDevices.result.devices.length; i++) {
+		    var deleteDevice = apsdb.callApi("DeleteDevice", {
+		        "id": listDevices.result.devices[i].id
+		    }, null);
+		}
+		var listSchemas = apsdb.callApi("ListSchemas");
+		for (i = 0; i < listSchemas.result.schemas.length; i++) {
+		    if (listSchemas.result.schemas[i].name != "apsdb_user" && listSchemas.result.schemas[i].name != "apsdb_device") {
+		        var deleteSchema = apsdb.callApi("DeleteSchema", {
+		            "apsdb.schemaName": listSchemas.result.schemas[i].name
+		        }, null);
+		    }
+		}
+		var listSavedQueries = apsdb.callApi("ListSavedQueries");
+		for (i = 0; i < listSavedQueries.result.savedQueries.length; i++) {
+		    var deleteSavedQuery = apsdb.callApi("DeleteSavedQuery", {
+		        "apsdb.queryName": listSavedQueries.result.savedQueries[i].name
+		    }, null);
+		}
+		var listFiles = apsdb.callApi("ListFiles");
+		for (i = 0; i < listFiles.result.files.length; i++) {
+		    var deleteFile = apsdb.callApi("DeleteFile", {
+		        "apsdb.name": listFiles.result.files[i].name
+		    }, null);
+		}
+		var listChannels = apsdb.callApi("ListChannels");
+		for (i = 0; i < listChannels.result.channels.length; i++) {
+		    var deleteChannel = apsdb.callApi("DeleteChannel", {
+		        "name": listChannels.result.channels[i].name
+		    }, null);
+		}
+		
+		//Delete all documents in SystemStore
+		var documents = require("document");
+		var store = documents.getInstance("SystemStore");
+		var listDocuments = store.query({"query" : "key is not null", "fields" : "*"});
+		for(i=0; i<listDocuments.result.documents.length; i++)
+		    store.delete(listDocuments.result.documents[i].key);
+	   
+	   //Delete local storage in SystemStore.
+	    for (var l in storage.local) {
+            delete storage.local[l];
+        }
+        
+       //Delete global storage in SystemStore.
+        for (var g in storage.global) {
+         delete storage.global[g];
+        }
+        
+		var saveConfiguration = apsdb.callApi("SaveConfiguration", {
+		    "apsdb.createSchemaACL": "",
+		    "apsdb.createScriptACL": "",
+		    "apsdb.sendEmailACL": "",
+		    "apsdb.listScriptsACL": "",
+		    "apsdb.getScriptACL": "",
+		    "apsdb.defaultScriptExecutionACL": "",
+		    "apsdb.storageStore": "",
+		    "apsdb.defaultNotificationStore": "",
+		    "apsdb.defaultResponseType": "",
+		    "apsdb.disableSchemalessDocs": "true",
+		    "apsdb.optionalBindReferrer": "false",
+		    "apsdb.allowForce200ResponseStatus": "true",
+		    "apsdb.defaultTokenExpires": "1800",
+		    "apsdb.maximumTokenExpires": "86400",
+		    "apsdb.defaultTokenLifeTime": "7200",
+		    "apsdb.maximumTokenLifeTime": "604800",
+		    "apsdb.defaultRepositoryName": "",
+		    "apsdb.defaultRepositoryOwner": "",
+		    "apsdb.defaultRepositoryAccessToken": "",
+		    "apsdb.defaultRepositoryBranch": "",
+		    "apsdb.defaultRepositoryPath": "",
+		    "apsdb.backgroundJobStore": "",
+		    "apsdb.gitPurge": "",
+		    "apsdb.P3P": "",
+		    "apsdb.useOldScriptPermissions": "",
+		    "apsdb.accessControlAllowOrigin": "",
+		    "apsdb.accessControlAllowHeaders": ""
+		}, null);
+		
+		var deviceParams = { "apsdb.schemaName": "apsdb_device", "apsdb.schema": "<schema><aclGroups><aclGroup name=\"required\"><read>nobody</read><write>nobody</write><fields><field>isSuspended</field></fields></aclGroup><aclGroup name=\"requiredVisibles\"><read>creator</read><write>nobody</write><fields><field>id</field><field>groups</field><field>token</field></fields></aclGroup><aclGroup name=\"requiredEditables\"><read>creator</read><write>creator</write><fields><field>name</field><field>password</field><field>locale</field></fields></aclGroup><defaultAcl><read>creator</read><write>creator</write></defaultAcl><schemaAcl><read>creator</read><write>creator</write><delete>nobody</delete></schemaAcl></aclGroups><fields><field name=\"id\" type=\"string\" /><field name=\"name\" type=\"string\"/><field name=\"groups\" type=\"string\" /><field name=\"password\" type=\"string\" /><field name=\"locale\" type=\"string\" /><field name=\"isSuspended\" type=\"string\" /><field name=\"token\" type=\"string\" /></fields></schema>", "apsdb.update": "true", "apsws.authMode": "simple"};
+		var userParams = { "apsdb.schemaName": "apsdb_user", "apsdb.schema": "<schema><aclGroups><aclGroup name=\"required\"><read>nobody</read><write>nobody</write><fields><field>isSuspended</field></fields></aclGroup><aclGroup name=\"requiredVisibles\"><read>creator</read><write>nobody</write><fields><field>login</field><field>groups</field></fields></aclGroup><aclGroup name=\"requiredEditables\"><read>creator</read><write>creator</write><fields><field>name</field><field>password</field><field>locale</field></fields></aclGroup><defaultAcl><read>creator</read><write>creator</write></defaultAcl><schemaAcl><read>creator</read><write>creator</write><delete>nobody</delete></schemaAcl></aclGroups><fields><field name=\"login\" type=\"string\" /><field name=\"name\" type=\"string\"/><field name=\"groups\" type=\"string\" /><field name=\"password\" type=\"string\" /><field name=\"locale\" type=\"string\" /><field name=\"isSuspended\" type=\"string\" /></fields></schema>", "apsdb.update": "true", "apsws.authMode": "simple"};
+		apsdb.callApi("SaveSchema", userParams, null);
+		apsdb.callApi("SaveSchema", deviceParams, null);
+		
+	

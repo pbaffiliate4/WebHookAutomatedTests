@@ -1,0 +1,8 @@
+console.error("error");
+console.debug("debug");
+console.warn("warn");
+console.info("info");
+console.log("log");
+//console.setLevel("error");
+
+return 5;

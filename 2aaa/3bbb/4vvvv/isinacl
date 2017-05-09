@@ -1,0 +1,2 @@
+var result = isIdInAcl("id1", "id11");
+return result;
