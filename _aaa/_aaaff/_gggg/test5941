@@ -1,0 +1,1 @@
+var documents = require("document");var result = documents.query({"query":'name is not null', "ftsQuery":"i am a test", "fields":"name, descr", "count":"true", "includeFieldType":"true"});return result;

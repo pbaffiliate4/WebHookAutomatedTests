@@ -1,0 +1,14 @@
+var documents = require("document");
+var profile = request.files["profile"];
+var name = request.parameters["name"];
+
+var fields = {
+    "key" : "myDoc",
+    "name" : name,
+    "attachments" : profile,
+    "meta.types" : {
+        "name" : "string"
+    }
+}
+
+return documents.save(fields);

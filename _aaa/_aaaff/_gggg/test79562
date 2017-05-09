@@ -1,0 +1,1 @@
+var documents = require("document");var params = {"key":"024AEE5D4650E7AE8E85E07CB0C0D6CF","descr":"The closer you get to the meaning The sooner you will know that you are dreaming","attachments":request.files["drum"][0],"meta.types":{"descr":"text"},"meta.ftsFields":["descr","attachments"]};var result = documents.update(params);return result;
