@@ -1,0 +1,3 @@
+let required = require('ARequired');
+
+return required;
